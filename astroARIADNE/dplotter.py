@@ -379,7 +379,8 @@ class SEDPlotter:
                    marker=self.marker_model,
                    edgecolors=self.marker_colors_model,
                    s=self.scatter_size,
-                   facecolor='', zorder=3,
+                   #facecolor='', zorder=3,
+                   facecolor=['none'], zorder=3,
                    lw=3)
 
         # Residual plot
@@ -400,7 +401,8 @@ class SEDPlotter:
                      marker=self.marker_model,
                      edgecolors=self.marker_colors_model,
                      s=self.scatter_size,
-                     facecolor='',
+                     #facecolor='',
+                     facecolor=['none'],
                      lw=3,
                      zorder=10)
 
@@ -485,6 +487,7 @@ class SEDPlotter:
             Av = self.theta[4]
 
         # SED plot.
+        print('Using model '+self.grid)
         if self.grid == 'phoenix':
             wave = fits.open(self.moddir + self.__wav_file)[0].data
             wave *= u.angstrom.to(u.um)
@@ -1158,7 +1161,8 @@ class SEDPlotter:
         called AGSS2009, within BTSettl/AGSS2009 there should be the SED fits
         files with the following naming convention:
 
-        lteTTT-G.G[-/+]Z.Za+0.0.BT-Settl.AGSS2009.fits
+        #lteTTT-G.G[-/+]Z.Za+0.0.BT-Settl.AGSS2009.fits
+        lteTTT-G.G[-/+]Z.Za+0.0.BT-Settl.7.bz2
 
         where TTT are the first 3 digits of the effective temperature if it's a
         number over 10000, else it's the first 2 digit prepended by a 0.
@@ -1188,9 +1192,16 @@ class SEDPlotter:
         selected_SED += '-' + str(sel_logg) + metal_add + 'a+*'
         gl = glob.glob(selected_SED)
         selected_SED = gl[0]
-        tab = Table(fits.open(selected_SED)[1].data)
-        flux = np.array(tab['FLUX'].tolist()) * conversion
-        wave = np.array(tab['WAVELENGTH'].tolist()) * u.angstrom.to(u.um)
+        #tab = Table(fits.open(selected_SED)[1].data)
+        #flux = np.array(tab['FLUX'].tolist()) * conversion
+        #wave = np.array(tab['WAVELENGTH'].tolist()) * u.angstrom.to(u.um)
+        wave=np.loadtxt(selected_SED,dtype='str',usecols=0)
+        flux=np.loadtxt(selected_SED,dtype='str',usecols=1)
+        wave=np.array([float(i.replace('D','E')) for i in wave])
+        flux=np.array([float(i.replace('D','E')) for i in flux])
+        z=wave.argsort() #sort the wavelength
+        wave=wave[z] * u.angstrom.to(u.um)
+        flux=10**(flux[z]-8.)* conversion
         return wave, flux
 
     def fetch_btnextgen(self):
@@ -1231,9 +1242,16 @@ class SEDPlotter:
         selected_SED += '-' + str(sel_logg) + metal_add + 'a+*'
         gl = glob.glob(selected_SED)
         selected_SED = gl[0]
-        tab = Table(fits.open(selected_SED)[1].data)
-        flux = np.array(tab['FLUX'].tolist()) * conversion
-        wave = np.array(tab['WAVELENGTH'].tolist()) * u.angstrom.to(u.um)
+        #tab = Table(fits.open(selected_SED)[1].data)
+        #flux = np.array(tab['FLUX'].tolist()) * conversion
+        #wave = np.array(tab['WAVELENGTH'].tolist()) * u.angstrom.to(u.um)
+        wave=np.loadtxt(selected_SED,dtype='str',usecols=0)
+        flux=np.loadtxt(selected_SED,dtype='str',usecols=1)
+        wave=np.array([float(i.replace('D','E')) for i in wave])
+        flux=np.array([float(i.replace('D','E')) for i in flux])
+        z=wave.argsort() #sort the wavelength
+        wave=wave[z] * u.angstrom.to(u.um)
+        flux=10**(flux[z]-8.)* conversion
         return wave, flux
 
     def fetch_btcond(self):
@@ -1274,9 +1292,16 @@ class SEDPlotter:
         selected_SED += '-' + str(sel_logg) + metal_add + 'a+*'
         gl = glob.glob(selected_SED)
         selected_SED = gl[0]
-        tab = Table(fits.open(selected_SED)[1].data)
-        flux = np.array(tab['FLUX'].tolist()) * conversion
-        wave = np.array(tab['WAVELENGTH'].tolist()) * u.angstrom.to(u.um)
+        #tab = Table(fits.open(selected_SED)[1].data)
+        #flux = np.array(tab['FLUX'].tolist()) * conversion
+        #wave = np.array(tab['WAVELENGTH'].tolist()) * u.angstrom.to(u.um)
+        wave=np.loadtxt(selected_SED,dtype='str',usecols=0)
+        flux=np.loadtxt(selected_SED,dtype='str',usecols=1)
+        wave=np.array([float(i.replace('D','E')) for i in wave])
+        flux=np.array([float(i.replace('D','E')) for i in flux])
+        z=wave.argsort() #sort the wavelength
+        wave=wave[z] * u.angstrom.to(u.um)
+        flux=10**(flux[z]-8.)* conversion
         return wave, flux
 
     def fetch_ck04(self):
