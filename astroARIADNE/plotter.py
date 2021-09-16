@@ -1212,7 +1212,8 @@ class SEDPlotter:
         called AGSS2009, within BTNextGen/AGSS2009 there should be the SED fits
         files with the following naming convention:
 
-        lteTTT-G.G[-/+]Z.Za+0.0..BT-NextGen.AGSS2009.fits
+        #lteTTT-G.G[-/+]Z.Za+0.0..BT-NextGen.AGSS2009.fits
+        lteTTT-G.G[-/+]Z.Za+0.0.BT-NextGen.7.bz2
 
         where TTT are the first 3 digits of the effective temperature if it's a
         number over 10000, else it's the first 2 digit prepended by a 0.
@@ -1262,7 +1263,8 @@ class SEDPlotter:
         called CIFIST2011, within BTCOND/CIFIST2011 there should be the SED
         fits files with the following naming convention:
 
-        lteTTT-G.G[-/+]Z.Za+0.0..BT-Cond.CIFIST2011.fits
+        #lteTTT-G.G[-/+]Z.Za+0.0..BT-Cond.CIFIST2011.fits
+        lteTTT-G.G[-/+]Z.Za+0.0.BT-Cond.7.bz2
 
         where TTT are the first 3 digits of the effective temperature if it's a
         number over 10000, else it's the first 2 digit prepended by a 0.
