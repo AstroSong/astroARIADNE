@@ -51,9 +51,10 @@ But note that plotting the SED model is optional. You can run the code withouth 
 | ------------- |:-------------:|
 | Phoenix v2      | <ftp://phoenix.astro.physik.uni-goettingen.de/HiResFITS/PHOENIX-ACES-AGSS-COND-2011/> |
 | Phoenix v2   wavelength file   | <ftp://phoenix.astro.physik.uni-goettingen.de/HiResFITS/WAVE_PHOENIX-ACES-AGSS-COND-2011.fits> |
-| BT-Models      | <http://osubdd.ens-lyon.fr/phoenix/>  |
+| BT-Models      | <http://osubdd.ens-lyon.fr/phoenix/Grids/>  |
 | Castelli & Kurucz | <http://ssb.stsci.edu/cdbs/tarfiles/synphot3.tar.gz>      |
 | Kurucz 1993 | <http://ssb.stsci.edu/cdbs/tarfiles/synphot4.tar.gz>  |
+| Coelho 2014 | <http://specmodels.iag.usp.br/> |
 
 The wavelength file for the Phoenix model has to be placed in the root folder of the PHOENIXv2 models.
 
@@ -123,22 +124,26 @@ Models_Dir
 │	 └───kp10
 │
 └───PHOENIXv2
-	 │
-     └─── WAVE_PHOENIX-ACES-AGSS-COND-2011.fits
-	 └───Z-0.0
-	 │
-	 └───Z-0.5
-	 │
-	 └───Z-1.0
-	 │
-	 └───Z-1.5
-	 │
-	 └───Z-2.0
-	 │
-	 └───Z+0.5
-	 │
-	 └───Z+1.0
+│	 │
+│    └─── WAVE_PHOENIX-ACES-AGSS-COND-2011.fits
+│	 └───Z-0.0
+│	 │
+│	 └───Z-0.5
+│	 │
+│	 └───Z-1.0
+│	 │
+│	 └───Z-1.5
+│	 │
+│	 └───Z-2.0
+│	 │
+│	 └───Z+0.5
+│	 │
+│	 └───Z+1.0
+│
+└───Coelho14
+
 ```
+
 
 ### Notes:
 - The Phoenix v2 models with alpha enhancements are unused
